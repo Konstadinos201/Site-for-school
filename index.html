@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Διάλεξε Βίντεο</title>
+  <title>Ρολόι Πορτοκαλάδας - Λεόντειος Σχολή Νέας Σμύρνης</title>
   <style>
     * {
       box-sizing: border-box;
@@ -30,9 +30,22 @@
     header {
       text-align: center;
     }
+    .school-badge {
+      display: inline-block;
+      background: rgba(249, 115, 22, 0.15);
+      color: #fb923c;
+      border: 1px solid rgba(249, 115, 22, 0.3);
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      margin-bottom: 0.6rem;
+      letter-spacing: 0.04em;
+    }
     header h1 {
-      font-size: 1.6rem;
+      font-size: 1.65rem;
       margin-bottom: 0.4rem;
+      color: #ffffff;
     }
     header p {
       color: #94a3b8;
@@ -55,18 +68,21 @@
       transition: all 0.2s ease;
     }
     .tab-btn:hover {
-      border-color: #64748b;
+      border-color: #f97316;
     }
     .tab-btn.active {
-      background: #2563eb;
+      background: #ea580c;
       color: #ffffff;
-      border-color: #3b82f6;
+      border-color: #f97316;
     }
     .player-card {
       background: #1e293b;
       border-radius: 12px;
       padding: 1.2rem;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
     }
     video {
       width: 100%;
@@ -75,14 +91,66 @@
       display: block;
       background: #000;
     }
+    .inquiry-box {
+      background: #0f172a;
+      border-left: 4px solid #22c55e;
+      border-radius: 8px;
+      padding: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+    .inquiry-box h2 {
+      font-size: 1.15rem;
+      color: #f8fafc;
+    }
+    .inquiry-box p {
+      color: #cbd5e1;
+      font-size: 0.95rem;
+      line-height: 1.55;
+    }
+    .questions-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #4ade80;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-top: 0.25rem;
+    }
+    .inquiry-box ul {
+      padding-left: 1.25rem;
+      color: #e2e8f0;
+      font-size: 0.95rem;
+      line-height: 1.65;
+    }
+    .keywords {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.25rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid #1e293b;
+      font-size: 0.85rem;
+      color: #94a3b8;
+    }
+    .keyword-tag {
+      background: #1e293b;
+      color: #fdba74;
+      border: 1px solid #334155;
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      font-weight: 500;
+    }
   </style>
 </head>
 <body>
 
   <div class="container">
     <header>
-      <h1>Διάλεξε Βίντεο</h1>
-      <p>Πάτησε ένα από τα δύο κουμπιά για εναλλαγή</p>
+      <div class="school-badge">ΛΕΟΝΤΕΙΟΣ ΣΧΟΛΗ ΝΕΑΣ ΣΜΥΡΝΗΣ</div>
+      <h1>Ρολόι Πορτοκαλάδας: Πράσινη Ενέργεια</h1>
+      <p>Παρατήρησε τα βίντεο του πειράματος και ανακάλυψε πώς λειτουργεί</p>
     </header>
 
     <div class="tabs" role="tablist">
@@ -92,32 +160,73 @@
 
     <div class="player-card">
       <video id="mp4-player" controls preload="auto" playsinline>
-        <!-- Βάλε εδώ το link του πρώτου βίντεο από το Release -->
         <source id="mp4-source" src="https://github.com/Konstadinos201/Site-for-school/releases/download/v1.0.0/video1.mp4" type="video/mp4">
         Ο browser σας δεν υποστηρίζει αναπαραγωγή βίντεο.
       </video>
+
+      <div class="inquiry-box">
+        <h2 id="exp-title"></h2>
+        <p id="exp-desc"></p>
+        <div class="questions-title">Ερωτήματα προς διερεύνηση:</div>
+        <ul id="exp-questions"></ul>
+        <div class="keywords" id="exp-keywords"></div>
+      </div>
     </div>
   </div>
 
   <script>
-    // Βάλε εδώ τα δύο links από το Release του GitHub
-    const mp4Files = [
-      "https://github.com/Konstadinos201/Site-for-school/releases/download/v1.0.0/video1.mp4",
-      "https://github.com/Konstadinos201/Site-for-school/releases/download/v1.0.0/video2.mp4"
+    const experiments = [
+      {
+        src: "https://github.com/Konstadinos201/Site-for-school/releases/download/v1.0.0/video1.mp4",
+        title: "Μέρος 1: Το Πορτοκάλι ως Πηγή Ενέργειας",
+        description: "Δύο διαφορετικά μεταλλικά ελάσματα — Χαλκός (Cu) και Ψευδάργυρος (Zn) — τοποθετούνται μέσα στο πορτοκάλι και συνδέονται με το ψηφιακό ρολόι. Παρατήρησε τι συμβαίνει στην οθόνη του ρολογιού μόλις κλείσει το κύκλωμα.",
+        questions: [
+          "Γιατί χρειάζονται δύο διαφορετικά μέταλλα (Cu και Zn) και δεν λειτουργεί το κύκλωμα με δύο ίδια;",
+          "Ποιος είναι ο ρόλος του χυμού του πορτοκαλιού στο εσωτερικό του κυκλώματος;",
+          "Τι θα συμβεί αν βγάλουμε το ένα έλασμα από το πορτοκάλι ή αν χρησιμοποιήσουμε απεσταγμένο νερό αντί για φρούτο;"
+        ],
+        keywords: ["Γαλβανικό στοιχείο", "Ηλεκτρολύτης", "Ηλεκτρόδια Cu - Zn", "Χημική ενέργεια"]
+      },
+      {
+        src: "https://github.com/Konstadinos201/Site-for-school/releases/download/v1.0.0/video2.mp4",
+        title: "Μέρος 2: Δοκιμές & Επαλήθευση του Κυκλώματος",
+        description: "Συνεχίζουμε την παρατήρηση του πειράματος εξετάζοντας τη συμπεριφορά της διάταξης. Ερεύνησε πώς μετατρέπεται η αποθηκευμένη ενέργεια σε ηλεκτρικό ρεύμα ικανό να τροφοδοτήσει μια συσκευή.",
+        questions: [
+          "Προς ποια κατεύθυνση κινούνται τα ηλεκτρόνια ανάμεσα στον Ψευδάργυρο και τον Χαλκό;",
+          "Ποια άλλα φρούτα ή λαχανικά θα μπορούσαν να αντικαταστήσουν το πορτοκάλι και γιατί;",
+          "Πώς θα μπορούσαμε να αυξήσουμε την τάση (Volt) ώστε να ανάψουμε ένα λαμπάκι LED;"
+        ],
+        keywords: ["Οξειδοαναγωγή", "Ηλεκτρική τάση", "Σύνδεση σε σειρά", "Ανανεώσιμες πηγές"]
+      }
     ];
 
     function selectVideo(index) {
       const video = document.getElementById("mp4-player");
       const source = document.getElementById("mp4-source");
       const buttons = document.querySelectorAll(".tab-btn");
+      const data = experiments[index];
 
-      source.src = mp4Files[index];
+      source.src = data.src;
       video.load();
+
+      document.getElementById("exp-title").textContent = data.title;
+      document.getElementById("exp-desc").textContent = data.description;
+
+      const questionsList = document.getElementById("exp-questions");
+      questionsList.innerHTML = data.questions
+        .map(q => `<li>${q}</li>`)
+        .join("");
+
+      const keywordsContainer = document.getElementById("exp-keywords");
+      keywordsContainer.innerHTML = `<span>Λέξεις-κλειδιά για αναζήτηση:</span>` +
+        data.keywords.map(k => `<span class="keyword-tag">${k}</span>`).join("");
 
       buttons.forEach((btn, i) => {
         btn.classList.toggle("active", i === index);
       });
     }
+
+    selectVideo(0);
   </script>
 
 </body>
