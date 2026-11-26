@@ -12,17 +12,17 @@
     }
     body {
       font-family: system-ui, -apple-system, sans-serif;
-      background-color: #0f172a;
+      background: radial-gradient(circle at top, #1e293b 0%, #0f172a 70%);
       color: #f8fafc;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 2rem 1rem;
+      padding: 2rem 1rem 3rem;
       min-height: 100vh;
     }
     .container {
       width: 100%;
-      max-width: 720px;
+      max-width: 780px;
       display: flex;
       flex-direction: column;
       gap: 1.5rem;
@@ -34,16 +34,16 @@
       display: inline-block;
       background: rgba(249, 115, 22, 0.15);
       color: #fb923c;
-      border: 1px solid rgba(249, 115, 22, 0.3);
+      border: 1px solid rgba(249, 115, 22, 0.35);
       font-size: 0.8rem;
       font-weight: 700;
-      padding: 0.25rem 0.75rem;
+      padding: 0.3rem 0.9rem;
       border-radius: 999px;
-      margin-bottom: 0.6rem;
-      letter-spacing: 0.04em;
+      margin-bottom: 0.65rem;
+      letter-spacing: 0.05em;
     }
     header h1 {
-      font-size: 1.65rem;
+      font-size: 1.85rem;
       margin-bottom: 0.4rem;
       color: #ffffff;
     }
@@ -60,8 +60,8 @@
       background: #1e293b;
       color: #cbd5e1;
       border: 1px solid #334155;
-      border-radius: 10px;
-      padding: 0.85rem 1rem;
+      border-radius: 12px;
+      padding: 0.95rem 1rem;
       font-size: 1rem;
       font-weight: 600;
       cursor: pointer;
@@ -69,17 +69,20 @@
     }
     .tab-btn:hover {
       border-color: #f97316;
+      color: #ffffff;
     }
     .tab-btn.active {
-      background: #ea580c;
+      background: linear-gradient(135deg, #ea580c, #d97706);
       color: #ffffff;
       border-color: #f97316;
+      box-shadow: 0 4px 15px rgba(234, 88, 12, 0.35);
     }
-    .player-card {
+    .card {
       background: #1e293b;
-      border-radius: 12px;
-      padding: 1.2rem;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      border-radius: 16px;
+      padding: 1.35rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+      border: 1px solid #334155;
       display: flex;
       flex-direction: column;
       gap: 1.25rem;
@@ -87,35 +90,39 @@
     video {
       width: 100%;
       max-height: 70vh;
-      border-radius: 8px;
+      border-radius: 10px;
       display: block;
       background: #000;
     }
     .inquiry-box {
       background: #0f172a;
       border-left: 4px solid #22c55e;
-      border-radius: 8px;
-      padding: 1.2rem;
+      border-radius: 10px;
+      padding: 1.25rem;
       display: flex;
       flex-direction: column;
-      gap: 0.85rem;
+      gap: 0.9rem;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
     }
     .inquiry-box h2 {
-      font-size: 1.15rem;
+      font-size: 1.2rem;
       color: #f8fafc;
     }
     .inquiry-box p {
       color: #cbd5e1;
       font-size: 0.95rem;
-      line-height: 1.55;
+      line-height: 1.6;
     }
-    .questions-title {
-      font-size: 0.85rem;
+    .section-label {
+      font-size: 0.82rem;
       font-weight: 700;
       color: #4ade80;
       text-transform: uppercase;
-      letter-spacing: 0.04em;
-      margin-top: 0.25rem;
+      letter-spacing: 0.05em;
     }
     .inquiry-box ul {
       padding-left: 1.25rem;
@@ -128,8 +135,7 @@
       flex-wrap: wrap;
       align-items: center;
       gap: 0.5rem;
-      margin-top: 0.25rem;
-      padding-top: 0.75rem;
+      padding-top: 0.8rem;
       border-top: 1px solid #1e293b;
       font-size: 0.85rem;
       color: #94a3b8;
@@ -138,9 +144,137 @@
       background: #1e293b;
       color: #fdba74;
       border: 1px solid #334155;
-      padding: 0.25rem 0.6rem;
+      padding: 0.25rem 0.65rem;
       border-radius: 6px;
       font-weight: 500;
+    }
+
+    /* Δομημένο Σημειωματάριο Ερευνητή */
+    .note-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    .note-group label {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #cbd5e1;
+    }
+    .notes-area {
+      width: 100%;
+      min-height: 68px;
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      padding: 0.75rem;
+      color: #f8fafc;
+      font-family: inherit;
+      font-size: 0.92rem;
+      resize: vertical;
+    }
+    .notes-area:focus {
+      outline: none;
+      border-color: #f97316;
+    }
+    .notes-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .btn-group {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .action-btn {
+      background: #334155;
+      color: #f8fafc;
+      border: none;
+      padding: 0.6rem 1rem;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .action-btn:hover {
+      background: #475569;
+    }
+    .action-btn.primary {
+      background: #2563eb;
+    }
+    .action-btn.primary:hover {
+      background: #1d4ed8;
+    }
+    .copy-status {
+      font-size: 0.85rem;
+      color: #4ade80;
+    }
+
+    /* Tips & Checklist */
+    .checklist {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.7rem;
+      background: #0f172a;
+      padding: 0.75rem 0.95rem;
+      border-radius: 10px;
+      border: 1px solid #334155;
+      cursor: pointer;
+      font-size: 0.93rem;
+      color: #e2e8f0;
+      transition: border-color 0.2s;
+    }
+    .check-item:hover {
+      border-color: #64748b;
+    }
+    .check-item input[type="checkbox"] {
+      margin-top: 0.2rem;
+      accent-color: #22c55e;
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+    }
+    .check-item.done span {
+      text-decoration: line-through;
+      color: #64748b;
+    }
+
+    .tips-box {
+      background: rgba(56, 189, 248, 0.06);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      border-radius: 10px;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #bae6fd;
+      line-height: 1.6;
+    }
+    .tips-box ul {
+      padding-left: 1.2rem;
+      margin-top: 0.4rem;
+    }
+
+    .info-footer {
+      background: rgba(30, 41, 59, 0.7);
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #94a3b8;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+    .info-footer strong {
+      color: #cbd5e1;
     }
   </style>
 </head>
@@ -150,7 +284,7 @@
     <header>
       <div class="school-badge">ΛΕΟΝΤΕΙΟΣ ΣΧΟΛΗ ΝΕΑΣ ΣΜΥΡΝΗΣ</div>
       <h1>Ρολόι Πορτοκαλάδας: Πράσινη Ενέργεια</h1>
-      <p>Παρατήρησε τα βίντεο του πειράματος και ανακάλυψε πώς λειτουργεί</p>
+      <p>Διαγωνισμός Χημείας &bull; 2ο Στάδιο: Πειραματική Διερεύνηση</p>
     </header>
 
     <div class="tabs" role="tablist">
@@ -158,7 +292,7 @@
       <button class="tab-btn" onclick="selectVideo(1)">2. Δεύτερο Βίντεο</button>
     </div>
 
-    <div class="player-card">
+    <div class="card" id="player-section">
       <video id="mp4-player" controls preload="auto" playsinline>
         <source id="mp4-source" src="https://github.com/Konstadinos201/Site-for-school/releases/download/v1.0.0/video1.mp4" type="video/mp4">
         Ο browser σας δεν υποστηρίζει αναπαραγωγή βίντεο.
@@ -167,10 +301,77 @@
       <div class="inquiry-box">
         <h2 id="exp-title"></h2>
         <p id="exp-desc"></p>
-        <div class="questions-title">Ερωτήματα προς διερεύνηση:</div>
+        <div class="section-label">Ερωτήματα προς διερεύνηση:</div>
         <ul id="exp-questions"></ul>
         <div class="keywords" id="exp-keywords"></div>
       </div>
+    </div>
+
+    <!-- Δομημένο Σημειωματάριο Ερευνητή με LocalStorage -->
+    <div class="card">
+      <div class="section-label" style="color: #fb923c;">Ημερολόγιο Εργαστηρίου (Αποθηκεύεται αυτόματα)</div>
+      <p style="font-size: 0.92rem; color: #cbd5e1;">Κατέγραψε τα στάδια της σκέψης σου καθώς παρατηρείς και πειραματίζεσαι:</p>
+
+      <div class="note-group">
+        <label for="note-obs">1. Τι παρατήρησα στα βίντεο;</label>
+        <textarea id="note-obs" class="notes-area" oninput="saveNotes()" placeholder="Περιέγραψε τι συμβαίνει στη διάταξη όταν συνδέονται τα καλώδια..."></textarea>
+      </div>
+
+      <div class="note-group">
+        <label for="note-hyp">2. Ποια είναι η επιστημονική μου υπόθεση;</label>
+        <textarea id="note-hyp" class="notes-area" oninput="saveNotes()" placeholder="Γιατί πιστεύεις ότι λειτουργεί το κύκλωμα; Τι ρόλο παίζουν τα υλικά;"></textarea>
+      </div>
+
+      <div class="note-group">
+        <label for="note-next">3. Τι θα δοκιμάσω στο δικό μου πείραμα;</label>
+        <textarea id="note-next" class="notes-area" oninput="saveNotes()" placeholder="Ποιες αλλαγές ή δοκιμές σχεδιάζεις να κάνεις με την ομάδα σου;"></textarea>
+      </div>
+
+      <div class="notes-actions">
+        <span id="copy-status" class="copy-status"></span>
+        <div class="btn-group">
+          <button class="action-btn" onclick="clearNotes()">Καθαρισμός</button>
+          <button class="action-btn primary" onclick="copyNotes()">Αντιγραφή για το Teams</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tips & Checklist -->
+    <div class="card">
+      <div class="section-label" style="color: #38bdf8;">Οδηγός Προετοιμασίας Ομάδας (Έως 3 λεπτά βίντεο)</div>
+      
+      <div class="tips-box">
+        <strong>💡 Χρήσιμες συμβουλές για το δικό σας βίντεο:</strong>
+        <ul>
+          <li>Φροντίστε το κινητό ή η κάμερα να είναι σε <strong>οριζόντια θέση</strong>.</li>
+          <li>Εξηγήστε καθαρά τα υλικά σας και την υπόθεσή σας στα πρώτα 45 δευτερόλεπτα.</li>
+          <li>Δείξτε καθαρά τη μέτρηση ή την ένδειξη του ρολογιού όταν κλείνει το κύκλωμα.</li>
+        </ul>
+      </div>
+
+      <div class="checklist">
+        <label class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox">
+          <span>Συγκεντρώσαμε τα υλικά: εσπεριδοειδή, ηλεκτρόδια χαλκού (Cu) και ψευδαργύρου (Zn), καλώδια και ψηφιακό ρολόι.</span>
+        </label>
+        <label class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox">
+          <span>Ελέγξαμε ότι τα δύο μεταλλικά ελάσματα δεν ακουμπούν μεταξύ τους μέσα στο φρούτο.</span>
+        </label>
+        <label class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox">
+          <span>Δοκιμάσαμε διαφορετικές συνδέσεις ή/και διαφορετικά φρούτα και καταγράψαμε τις παρατηρήσεις μας.</span>
+        </label>
+        <label class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox">
+          <span>Βιντεοσκοπήσαμε τη διαδικασία και τα αποτελέσματα (συνολική διάρκεια έως 3 λεπτά) για υποβολή στο TEAMS.</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="info-footer">
+      <div><strong>Προθεσμία υποβολής βίντεο (TEAMS):</strong> 25 Ιανουαρίου 2027</div>
+      <div>Τμήμα Φυσικών Επιστημών &bull; Δημιουργική Επιστημονική Πρόκληση</div>
     </div>
   </div>
 
@@ -178,25 +379,25 @@
     const experiments = [
       {
         src: "https://github.com/Konstadinos201/Site-for-school/releases/download/v1.0.0/video1.mp4",
-        title: "Μέρος 1: Το Πορτοκάλι ως Πηγή Ενέργειας",
-        description: "Δύο διαφορετικά μεταλλικά ελάσματα — Χαλκός (Cu) και Ψευδάργυρος (Zn) — τοποθετούνται μέσα στο πορτοκάλι και συνδέονται με το ψηφιακό ρολόι. Παρατήρησε τι συμβαίνει στην οθόνη του ρολογιού μόλις κλείσει το κύκλωμα.",
+        title: "Μέρος 1: Παρατήρηση της Διάταξης",
+        description: "Δύο μεταλλικά ελάσματα — Χαλκός (Cu) και Ψευδάργυρος (Zn) — τοποθετούνται μέσα στο πορτοκάλι και συνδέονται με το ψηφιακό ρολόι. Παρατήρησε προσεκτικά τι συμβαίνει στην οθόνη μόλις ολοκληρωθεί η σύνδεση.",
         questions: [
-          "Γιατί χρειάζονται δύο διαφορετικά μέταλλα (Cu και Zn) και δεν λειτουργεί το κύκλωμα με δύο ίδια;",
-          "Ποιος είναι ο ρόλος του χυμού του πορτοκαλιού στο εσωτερικό του κυκλώματος;",
-          "Τι θα συμβεί αν βγάλουμε το ένα έλασμα από το πορτοκάλι ή αν χρησιμοποιήσουμε απεσταγμένο νερό αντί για φρούτο;"
+          "Γιατί χρησιμοποιούνται δύο διαφορετικά μέταλλα (Cu και Zn) και τι πιστεύεις ότι θα γινόταν με δύο ίδια;",
+          "Ποιος είναι ο ρόλος του εσωτερικού του πορτοκαλιού ανάμεσα στα δύο ελάσματα;",
+          "Τι θα συνέβαινε αν χρησιμοποιούσαμε απεσταγμένο νερό αντί για εσπεριδοειδές;"
         ],
-        keywords: ["Γαλβανικό στοιχείο", "Ηλεκτρολύτης", "Ηλεκτρόδια Cu - Zn", "Χημική ενέργεια"]
+        keywords: ["Γαλβανικό στοιχείο", "Ηλεκτρολύτης", "Ηλεκτρόδια Cu - Zn", "Μετατροπή ενέργειας"]
       },
       {
         src: "https://github.com/Konstadinos201/Site-for-school/releases/download/v1.0.0/video2.mp4",
-        title: "Μέρος 2: Δοκιμές & Επαλήθευση του Κυκλώματος",
-        description: "Συνεχίζουμε την παρατήρηση του πειράματος εξετάζοντας τη συμπεριφορά της διάταξης. Ερεύνησε πώς μετατρέπεται η αποθηκευμένη ενέργεια σε ηλεκτρικό ρεύμα ικανό να τροφοδοτήσει μια συσκευή.",
+        title: "Μέρος 2: Διερεύνηση & Επαλήθευση",
+        description: "Συνεχίζουμε την παρατήρηση της λειτουργίας του κυκλώματος. Ερεύνησε πώς η χημική ενέργεια μετατρέπεται σε ηλεκτρική και πώς μπορείς να βελτιστοποιήσεις τη δική σου κατασκευή.",
         questions: [
-          "Προς ποια κατεύθυνση κινούνται τα ηλεκτρόνια ανάμεσα στον Ψευδάργυρο και τον Χαλκό;",
-          "Ποια άλλα φρούτα ή λαχανικά θα μπορούσαν να αντικαταστήσουν το πορτοκάλι και γιατί;",
-          "Πώς θα μπορούσαμε να αυξήσουμε την τάση (Volt) ώστε να ανάψουμε ένα λαμπάκι LED;"
+          "Πώς προκύπτει η κίνηση των ηλεκτρονίων ανάμεσα στα δύο μέταλλα;",
+          "Ποια άλλα φρούτα ή λαχανικά θα μπορούσαν να δώσουν παρόμοιο αποτέλεσμα και πώς θα το ελέγξεις;",
+          "Πώς θα μπορούσες να συνδέσεις περισσότερα από ένα πορτοκάλια αν χρειαζόσουν μεγαλύτερη ισχύ;"
         ],
-        keywords: ["Οξειδοαναγωγή", "Ηλεκτρική τάση", "Σύνδεση σε σειρά", "Ανανεώσιμες πηγές"]
+        keywords: ["Οξειδοαναγωγή", "Ηλεκτρική τάση", "Σύνδεση στοιχείων", "Πράσινη ενέργεια"]
       }
     ];
 
@@ -212,21 +413,73 @@
       document.getElementById("exp-title").textContent = data.title;
       document.getElementById("exp-desc").textContent = data.description;
 
-      const questionsList = document.getElementById("exp-questions");
-      questionsList.innerHTML = data.questions
+      document.getElementById("exp-questions").innerHTML = data.questions
         .map(q => `<li>${q}</li>`)
         .join("");
 
-      const keywordsContainer = document.getElementById("exp-keywords");
-      keywordsContainer.innerHTML = `<span>Λέξεις-κλειδιά για αναζήτηση:</span>` +
+      document.getElementById("exp-keywords").innerHTML = `<span>Λέξεις-κλειδιά για αναζήτηση:</span>` +
         data.keywords.map(k => `<span class="keyword-tag">${k}</span>`).join("");
 
-      buttons.forEach((btn, i) => {
-        btn.classList.toggle("active", i === index);
+      buttons.forEach((btn, i) => btn.classList.toggle("active", i === index));
+    }
+
+    function toggleCheck(label) {
+      const checkbox = label.querySelector("input");
+      label.classList.toggle("done", checkbox.checked);
+    }
+
+    // Αυτόματη αποθήκευση στον browser (LocalStorage)
+    function saveNotes() {
+      localStorage.setItem("obs", document.getElementById("note-obs").value);
+      localStorage.setItem("hyp", document.getElementById("note-hyp").value);
+      localStorage.setItem("next", document.getElementById("note-next").value);
+    }
+
+    function loadNotes() {
+      if (localStorage.getItem("obs")) document.getElementById("note-obs").value = localStorage.getItem("obs");
+      if (localStorage.getItem("hyp")) document.getElementById("note-hyp").value = localStorage.getItem("hyp");
+      if (localStorage.getItem("next")) document.getElementById("note-next").value = localStorage.getItem("next");
+    }
+
+    function clearNotes() {
+      document.getElementById("note-obs").value = "";
+      document.getElementById("note-hyp").value = "";
+      document.getElementById("note-next").value = "";
+      localStorage.clear();
+      document.getElementById("copy-status").textContent = "Το ημερολόγιο καθαρίστηκε.";
+      setTimeout(() => { document.getElementById("copy-status").textContent = ""; }, 2000);
+    }
+
+    function copyNotes() {
+      const obs = document.getElementById("note-obs").value.trim();
+      const hyp = document.getElementById("note-hyp").value.trim();
+      const next = document.getElementById("note-next").value.trim();
+      const status = document.getElementById("copy-status");
+
+      if (!obs && !hyp && !next) {
+        status.textContent = "Συμπλήρωσε πρώτα τουλάχιστον ένα πεδίο!";
+        status.style.color = "#fb923c";
+        return;
+      }
+
+      const formatted = [
+        "--- ΗΜΕΡΟΛΟΓΙΟ ΠΕΙΡΑΜΑΤΟΣ: ΡΟΛΟΪ ΠΟΡΤΟΚΑΛΑΔΑΣ ---",
+        obs ? `\n1. Παρατηρήσεις:\n${obs}` : "",
+        hyp ? `\n2. Επιστημονική Υπόθεση:\n${hyp}` : "",
+        next ? `\n3. Επόμενες Δοκιμές:\n${next}` : ""
+      ].filter(Boolean).join("\n");
+
+      navigator.clipboard.writeText(formatted).then(() => {
+        status.textContent = "Το ημερολόγιο αντιγράφηκε!";
+        status.style.color = "#4ade80";
+        setTimeout(() => { status.textContent = ""; }, 2500);
       });
     }
 
-    selectVideo(0);
+    const params = new URLSearchParams(window.location.search);
+    const initialTab = params.get("v") === "2" ? 1 : 0;
+    selectVideo(initialTab);
+    loadNotes();
   </script>
 
 </body>
