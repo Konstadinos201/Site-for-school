@@ -213,7 +213,7 @@
       color: #4ade80;
     }
 
-    /* Tips & Checklist */
+    /* Checklist Πειράματος */
     .checklist {
       display: flex;
       flex-direction: column;
@@ -245,20 +245,6 @@
     .check-item.done span {
       text-decoration: line-through;
       color: #64748b;
-    }
-
-    .tips-box {
-      background: rgba(56, 189, 248, 0.06);
-      border: 1px solid rgba(56, 189, 248, 0.2);
-      border-radius: 10px;
-      padding: 1rem;
-      font-size: 0.9rem;
-      color: #bae6fd;
-      line-height: 1.6;
-    }
-    .tips-box ul {
-      padding-left: 1.2rem;
-      margin-top: 0.4rem;
     }
 
     .info-footer {
@@ -336,19 +322,9 @@
       </div>
     </div>
 
-    <!-- Tips & Checklist -->
+    <!-- Checklist Ομάδας -->
     <div class="card">
-      <div class="section-label" style="color: #38bdf8;">Οδηγός Προετοιμασίας Ομάδας (Έως 3 λεπτά βίντεο)</div>
-      
-      <div class="tips-box">
-        <strong>💡 Χρήσιμες συμβουλές για το δικό σας βίντεο:</strong>
-        <ul>
-          <li>Φροντίστε το κινητό ή η κάμερα να είναι σε <strong>οριζόντια θέση</strong>.</li>
-          <li>Εξηγήστε καθαρά τα υλικά σας και την υπόθεσή σας στα πρώτα 45 δευτερόλεπτα.</li>
-          <li>Δείξτε καθαρά τη μέτρηση ή την ένδειξη του ρολογιού όταν κλείνει το κύκλωμα.</li>
-        </ul>
-      </div>
-
+      <div class="section-label" style="color: #38bdf8;">Λίστα Ελέγχου Ομάδας</div>
       <div class="checklist">
         <label class="check-item" onclick="toggleCheck(this)">
           <input type="checkbox">
@@ -428,7 +404,6 @@
       label.classList.toggle("done", checkbox.checked);
     }
 
-    // Αυτόματη αποθήκευση στον browser (LocalStorage)
     function saveNotes() {
       localStorage.setItem("obs", document.getElementById("note-obs").value);
       localStorage.setItem("hyp", document.getElementById("note-hyp").value);
